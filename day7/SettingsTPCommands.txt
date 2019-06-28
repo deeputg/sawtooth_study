@@ -1,0 +1,52 @@
+1. sudo docker-compose -f sawtooth-default-blockinfo.yaml up
+
+2. sudo docker exec -it sawtooth-shell-default bash
+
+3. sudo docker exec -it sawtooth-validator-default bash
+
+4. sawset proposal create --url http://rest-api:8008 --key /root/.sawtooth/keys/my_key.priv sawtooth.validator.max_transactions_per_block='100'
+
+5. sawtooth settings list --url http://rest-api:8008
+
+6. sawtooth keygen keyone
+
+7. sawtooth keygen keytwo
+
+8. sawtooth keygen keythree
+
+9. sawset proposal create --url http://rest-api:8008 --key root/.sawtooth/keys/my_key.priv sawtooth.settings.vote.authorized_keys=$(cat /root/.sawtooth/keys/my_key.pub),$(cat /root/.sawtooth/keys/keyone.pub),$(cat /root/.sawtooth/keys/keytwo.pub) sawtooth.settings.vote.approval_threshold=2
+
+10. sawset proposal create --url http://rest-api:8008 --key /root/.sawtooth/keys/my_key.priv sawtooth.validator.max_transactions_per_block='300'
+
+11. sawset proposal list --url http://rest-api:8008
+
+12. sawset proposal vote --url http://rest-api:8008 --key /root/.sawtooth/keys/keyone.priv PROPOSAL_ID accept
+
+13. sawtooth settings list --url http://rest-api:8008
+
+14. sawset proposal create --url http://rest-api:8008 --key root/.sawtooth/keys/my_key.priv sawtooth.settings.vote.approval_threshold=1
+
+15. sawset proposal vote --url http://rest-api:8008 -k /root/.sawtooth/keys/keyone.priv <proposalId>​​ accept
+
+16. intkey set MyKey 65 --url http://rest-api:8008
+
+17. intkey show MyKey --url http://rest-api:8008
+
+18. intkey inc MyKey 5 --url http://rest-api:8008	
+
+19. intkey dec MyKey 10 --url http://rest-api:8008
+
+20. intkey list --url http://rest-api:8008
+
+21. sawset proposal create --key /root/.sawtooth/keys/my_key.priv --url http://rest-api:8008 sawtooth.validator.batch_injectors=block_info
+
+22. sawset proposal create --key /root/.sawtooth/keys/my_key.priv --url http://rest-api:8008 sawtooth.validator.block_validation_rules='NofX:1, block_info;XatY:block_info,0;local:0'
+
+23. sawset proposal create --url http://rest-api:8008 --key /root/.sawtooth/keys/my_key.priv sawtooth.validator.transaction_families='[{"family":"sawtooth_settings", "version": "1.0"}, {"family": "block_info","version": "1.0"} ]'
+
+24. intkey inc MyKey 5 --url http://rest-api:8008
+
+25. sawset proposal create --url http://rest-api:8008 --key /root/.sawtooth/keys/my_key.priv sawtooth.validator.transaction_families='[{"family": "sawtooth_settings", "version": "1.0"}, {"family": "block_info","version": "1.0"}, {"family": "intkey", "version":"1.0"} ]'
+
+26. docker-compose -f sawtooth-default-blockinfo.yaml down
+

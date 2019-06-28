@@ -1,0 +1,87 @@
+<link rel='stylesheet' href='/stylesheets/dashboards.css' />
+<h1>Automobile Database</h1>
+<div class="form-modal">
+
+    <div class="form-toggle">
+        <button id="man-toggle" onclick="toggleMan()">Manufacturer</button>
+        <button id="dep-toggle" onclick="toggleDep()">Vehicle Department</button>
+    </div>
+
+    <div id="man-form">
+        <form>
+            <input id="manufactureKey" type="text" placeholder="Enter private key" />
+            <table>
+                        <tr>
+                            <td><input id="vin" type="text" placeholder="Enter Vin Number"/></td>
+                            <td><input id="engineNo" type="text" placeholder="Enter Engine Number"/></td>
+                        </tr>
+                        <tr>
+                            <td><input id="makeModel" type="text" placeholder="Make & Model"/></td>
+                            <td><input id="dateManufacture" type="text" onfocus="(this.type='date')" placeholder="Date of Manufacture"/></td>
+                        </tr>
+            </table>
+            <button type="button" onclick="addVehicleAsManufacturer(event)" class="btn login">Add New Vehicle</button>
+            
+        </form>
+
+    </div>
+
+    <div id="dep-form">
+        <form>
+            <input id="registerKey" type="email" placeholder="Enter private key" />
+            <table>
+                        <tr>
+                            <td><input id="rvin" type="text" placeholder="Enter Vin Number"/></td>
+                            <td><input id="ownerName" type="text" placeholder="Owner Name"/></td>
+                        </tr>
+                        <tr>
+                            <td><input id="ownerAddress" type="text" placeholder="Address"/></td>
+                            <td><input id="dateRegister" type="text" onfocus="(this.type='date')" placeholder="Date of Registration"/></td>
+                        </tr>
+                        <tr>
+                            <td><input id="manufactureNo" list="companies" type="text" placeholder="Manufacturer Name"/></label>
+                        <datalist id="companies">
+                        <option value="Ford">
+                        <option value="Maruthi">
+                        <option value="Volkawagen">
+                        <option value="Chevorlet">
+                        </datalist></td>
+                            <td><input id="numPlate" type="text" placeholder="Number Plate"/></td>
+                        </tr>
+                    </table>
+            <button type="button" onclick="addVehicleAsRegister(event)" class="btn signup">Register Vehicle</button>
+            
+        </form>
+    </div>
+
+</div>
+
+
+<script>
+    function toggleDep() {
+        document.getElementById("man-toggle").style.backgroundColor = "#fff";
+        document.getElementById("man-toggle").style.color = "#222";
+        document.getElementById("dep-toggle").style.backgroundColor = "#33cc99";
+        document.getElementById("dep-toggle").style.color = "#fff";
+        document.getElementById("man-form").style.display = "none";
+        document.getElementById("dep-form").style.display = "block";
+    }
+
+    function toggleMan() {
+        document.getElementById("man-toggle").style.backgroundColor = "#33cc99";
+        document.getElementById("man-toggle").style.color = "#fff";
+        document.getElementById("dep-toggle").style.backgroundColor = "#fff";
+        document.getElementById("dep-toggle").style.color = "#222";
+        document.getElementById("dep-form").style.display = "none";
+        document.getElementById("man-form").style.display = "block";
+    }
+
+</script>
+<script
+			  src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			  crossorigin="anonymous"></script>
+<script src='/javascripts/main.js'></script>
+<script>
+
+</script>
